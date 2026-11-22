@@ -1,0 +1,29 @@
+
+# Ambiente virtual
+venv/
+.venv/
+
+# Credenciais
+.env
+.env.*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Git
+.git/
+.gitignore
+
+# Editor
+.vscode/
+.idea/
+
+# Arquivos temporários
+.pytest_cache/
+.coverage
+
+# Planilhas e arquivos locais
+*.xlsx
+*.xls
