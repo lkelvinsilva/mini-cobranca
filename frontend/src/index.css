@@ -125,3 +125,87 @@ td,th,.kpi strong,.dash-big,.acts b{font-variant-numeric:tabular-nums}
 .acts small{text-align:right;color:var(--mut);font-size:12px;line-height:1.4}
 
 @media(max-width:900px){.dash-hero{padding:24px}.dash-big{font-size:34px}.dash-rate{flex-direction:row}.ring{width:76px;height:76px}.ring::before{inset:8px}.ring b{font-size:17px}}
+/* ===== Responsividade (celular e tablet) ===== */
+html,body{overflow-x:hidden}
+.backdrop{display:none}
+.close-menu{display:none;color:#fff}
+.aside-top{display:flex;align-items:center;justify-content:space-between}
+.grid2{grid-template-columns:repeat(auto-fit,minmax(min(100%,380px),1fr))}
+.card{min-width:0}
+
+@media(max-width:900px){
+  aside{width:min(290px,86vw);box-shadow:0 0 60px #000a}
+  .close-menu{display:grid;place-items:center}
+  .backdrop{display:block;position:fixed;inset:0;background:#05285c99;backdrop-filter:blur(2px);z-index:15;opacity:0;pointer-events:none;transition:opacity .25s}
+  .backdrop.show{opacity:1;pointer-events:auto}
+  header{padding:0 14px;gap:8px}
+  main{padding:18px 14px 28px}
+  .search.top{display:none}
+}
+
+@media(max-width:600px){
+  /* topo */
+  header{height:58px}
+  .sys{font-size:15px}
+  .env{font-size:10px;padding:4px 8px}
+  .user span{width:32px;height:32px}
+  h1{font-size:22px}
+
+  /* cabeçalho das páginas: botão ocupa a largura toda */
+  .ph{align-items:stretch;margin-bottom:16px}
+  .ph>div:last-child{width:100%}
+  .ph .btn{width:100%;justify-content:center}
+
+  /* dashboard */
+  .dash-hero{padding:20px 18px;border-radius:20px;gap:16px}
+  .dash-big{font-size:30px}
+  .dash-hero p{margin-top:10px}
+  .dash-rate{width:100%;flex-direction:row;justify-content:flex-start;gap:14px;padding-top:14px;border-top:1px solid #ffffff26}
+  .ring{width:64px;height:64px}.ring::before{inset:7px}.ring b{font-size:15px}
+  .kpis{grid-template-columns:repeat(2,1fr);gap:10px}
+  .kpi{padding:14px}
+  .kpi strong{font-size:18px;word-break:break-word}
+  .kpi-ico{width:32px;height:32px;margin-bottom:6px}
+  .grid3{grid-template-columns:1fr}
+  .grid4{grid-template-columns:repeat(2,1fr);gap:10px}
+  .stat{flex-direction:column;align-items:flex-start;gap:8px}
+  .stat strong{font-size:18px}
+
+  /* cards e gráficos */
+  .card{padding:14px;border-radius:16px}
+  .donut-wrap{flex-direction:column;gap:14px}
+  .donut{max-width:220px;width:100%}
+  .legend{width:100%;flex:none}
+  .acts li{gap:10px}
+  .acts small{font-size:11px}
+
+  /* filtros e tabelas */
+  .toolbar{flex-direction:column;gap:8px}
+  .toolbar>*{width:100%}
+  .toolbar .search{min-width:0}
+  .toolbar input[type=date]{min-width:0}
+  .tw{margin:0 -14px;padding:0 14px}
+  td,th{padding:10px 8px;font-size:13px}
+  .pager{flex-direction:column;gap:10px;align-items:stretch;text-align:center}
+  .pager>div{display:flex;justify-content:space-between;align-items:center}
+
+  /* formulários: 16px evita o zoom automático do iPhone */
+  select,input,textarea{font-size:16px}
+  .btn{padding:12px 16px}
+
+  /* modais viram painel que sobe de baixo */
+  .overlay{align-items:end;padding:0}
+  .modal{max-width:none;max-height:92vh;border-radius:22px 22px 0 0;padding:20px 18px 26px}
+  .kv{grid-template-columns:1fr;gap:2px 0}
+  .kv span{margin-top:8px;font-size:12px}
+
+  /* importar excel */
+  .imp-drop{padding:26px 14px}
+  .imp-sheets{grid-template-columns:repeat(2,1fr)}
+  .imp-actions .btn{flex:1;justify-content:center}
+  .imp-banner{font-size:13px;padding:12px}
+
+  /* login e avisos */
+  .login-card{padding:26px 22px;border-radius:22px}
+  .toast{left:14px;right:14px;bottom:14px;text-align:center}
+}

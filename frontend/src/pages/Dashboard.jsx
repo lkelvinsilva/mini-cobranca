@@ -1,5 +1,5 @@
-import { Receipt, TrendingUp, CircleDollarSign, CheckCircle2, AlertCircle, Clock, UserCheck, ArrowDownLeft } from 'lucide-react';
-import { ResponsiveContainer, AreaChart, Area, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, BarChart, Bar, CartesianGrid } from 'recharts';
+import { Receipt, CircleDollarSign, CheckCircle2, AlertCircle, Clock, UserCheck, ArrowDownLeft } from 'lucide-react';
+import { ResponsiveContainer, XAxis, YAxis, Tooltip, PieChart, Pie, Cell, BarChart, Bar, CartesianGrid } from 'recharts';
 import useFetch from '../hooks/useFetch'; import { api } from '../services/api';
 import { Card, Empty } from '../components/ui'; import Async from '../components/Async';
 import { nParcela, nPag, nColab, list } from '../utils/norm'; import { brl, date } from '../utils/format';
@@ -9,7 +9,6 @@ const NOME = { ok: 'Pagas', wait: 'Pendentes', late: 'Atrasadas' };
 const compact = (v) => Intl.NumberFormat('pt-BR', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
 const tip = { borderRadius: 12, border: '1px solid #e4ebf5', boxShadow: '0 10px 30px -12px #0a47a044', fontSize: 13 };
 
-// Deduz a situação pelo saldo, pelo texto e pelo vencimento (não depende só do texto da API).
 function situacao(p) {
   if (p.valor > 0 && p.saldo <= 0) return 'ok';
   const t = String(p.status || '').toLowerCase();
@@ -55,10 +54,10 @@ export default function Dashboard() {
 
       <div className="grid2">
         <Card title="Evolução de valores recuperados">{ev.length
-          ? <ResponsiveContainer width="100%" height={260}><AreaChart data={ev} margin={{ left: -8, right: 8, top: 8 }}>
-            <defs><linearGradient id="ga" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#0a47a0" stopOpacity=".28" /><stop offset="1" stopColor="#38a6ff" stopOpacity="0" /></linearGradient></defs>
+          ? <ResponsiveContainer width="100%" height={260}><BarChart data={ev} margin={{ left: -8, right: 8, top: 8 }}>
+            <defs><linearGradient id="gb" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stopColor="#1a6fe0" /><stop offset="1" stopColor="#0a47a0" /></linearGradient></defs>
             <CartesianGrid stroke="#eaf0f8" vertical={false} /><XAxis dataKey="d" fontSize={11} tickLine={false} axisLine={false} /><YAxis fontSize={11} tickLine={false} axisLine={false} tickFormatter={compact} />
-            <Tooltip formatter={(v) => [brl(v), 'Recuperado']} contentStyle={tip} /><Area dataKey="v" stroke="#0a47a0" strokeWidth={2.5} fill="url(#ga)" dot={{ r: 3, fill: '#0a47a0' }} /></AreaChart></ResponsiveContainer>
+            <Tooltip formatter={(v) => [brl(v), 'Recuperado']} contentStyle={tip} cursor={{ fill: '#eef4fc' }} /><Bar dataKey="v" fill="url(#gb)" radius={[8, 8, 0, 0]} maxBarSize={38} /></BarChart></ResponsiveContainer>
           : <Empty text="Nenhum pagamento registrado ainda." />}</Card>
 
         <Card title="Parcelas por situação">{pie.length
